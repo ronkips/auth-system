@@ -17,7 +17,7 @@ const Login = () => {
   const gotoSignUpPage = () => navigate("/register");
   return (
     <div className="login__container">
-      <h2>Login</h2>
+      <h2>Login </h2>
       <form className="login__form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
@@ -30,16 +30,17 @@ const Login = () => {
         />
         <label htmlFor="password">Password</label>
         <input
-          type="text"
-          id="email"
-          name="email"
-          value={email}
+          type="password"
+          name="password"
+          id="password"
+          minLength={8}
           required
-          onChange={(e) => setEmail(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button className="loginBtn">SIGN IN</button>
         <p>
-          Don't have an account?{""}
+          Don't have an account?{" "}
           <span className="link" onClick={gotoSignUpPage}>
             Sign up
           </span>
