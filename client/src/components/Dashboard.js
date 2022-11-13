@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  const navigate = useNavigate();
+  useEffect(() => {
+    const checkUser = () => {
+      if (!localStorage.getItem("username")) {
+        navigate("/");
+      }
+    };
+    checkUser();
+  }, [navigate]);
 
-export default Dashboard
+  const handleSignOut = () => {
+    localStorage.removeItem("username");
+    navigate("/");
+  };
+  return (
+    <div className="dashboard">
+      <h2 style={{ marginBottom: "30px" }}>Hillary, Kipngetich</h2>
+      <button className="signOutBtn" onClick={handleSignOut}>
+        SIGN OUT
+      </button>
+    </div>
+  );
+};
+
+export default Dashboard;

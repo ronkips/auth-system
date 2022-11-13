@@ -46,7 +46,6 @@ button:hover {
   background-color: green;
   color: #fff;
   margin-bottom: 15px;
-  border-radius: 15%;
 }
 .signOutBtn {
   background-color: #c21010;
@@ -66,10 +65,10 @@ button:hover {
 .verify__form {
   align-items: center;
 }
-h2 {
+/* h2 {
   color: aquamarine;
   text-decoration: underline;
-}
+} */
 @media screen and (max-width: 800px) {
   .login__container,
   .signup__container,

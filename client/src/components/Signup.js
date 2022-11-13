@@ -8,9 +8,33 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
+  // Sending the users credentials to the Node.js server
+  const postSignUpDetails = () => {
+    fetch("http://localhost:5000/api/register", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+        tel,
+        username
+      }),
+
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+
+      .catch((err) => console.error(err));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, username, tel, password });
+    // console.log({ email, username, tel, password });
+    postSignUpDetails();
     setEmail("");
     setTel("");
     setUsername("");
