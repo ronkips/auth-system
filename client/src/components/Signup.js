@@ -10,7 +10,7 @@ const Signup = () => {
 
   // Sending the users credentials to the Node.js server
   const postSignUpDetails = () => {
-    fetch("http://localhost:5000/api/register", {
+    fetch("http://localhost:4000/api/register", {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -25,7 +25,13 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.error_message) {
+          alert(data.error_message);
+        } else {
+          alert("Account created successfully");
+          navigate("/");
+        }
+         console.log(data);
       })
 
       .catch((err) => console.error(err));

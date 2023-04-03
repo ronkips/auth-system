@@ -1,15 +1,49 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+  const eye = <FontAwesomeIcon icon={faEye} />;
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [register, handleOn] = useForm();
 
   const navigate = useNavigate();
 
+  const postLoginDetails = () => {
+    fetch("http://localhost:4000/api/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error_message) {
+          alert(data.error_message);
+        } else {
+          // Logs the username to the console
+          console.log(data.data);
+          // save the username to the local storage
+          localStorage.setItem("username", data.data.username);
+          // Navigates to the 2FA route
+          navigate("/phone/verify");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password });
+    // console.log({ email, password });
+    // calls the postLoginDetails function
+    postLoginDetails();
     setPassword("");
     setEmail("");
   };
@@ -37,7 +71,8 @@ const Login = () => {
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
+                  />
+       
         <button className="loginBtn">SIGN IN</button>
         <p>
           Don't have an account?{" "}

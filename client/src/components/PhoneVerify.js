@@ -4,12 +4,33 @@ import { useNavigate } from "react-router-dom";
 const PhoneVerify = () => {
   const [code, setCode] = useState("");
   const navigate = useNavigate();
-
+  
+  const postVerification = async () => {
+    fetch("http://localhost:4000/api/verification", {
+      method: "POST",
+      body: JSON.stringify({
+        code
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error_message) {
+          alert(data.error_message);
+        } else {
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ code });
+    postVerification();
+    // console.log({ code });
     setCode("");
-    navigate("/dashboard");
+    // navigate("/dashboard");
   };
   return (
     <div className="verify">

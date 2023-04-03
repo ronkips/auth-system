@@ -18,6 +18,7 @@ button {
   padding: 15px;
   cursor: pointer;
   font-size: 16px;
+  border-radius: 30px;
 }
 button:hover {
   background: blue;

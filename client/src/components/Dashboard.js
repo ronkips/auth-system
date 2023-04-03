@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
     const checkUser = () => {
       if (!localStorage.getItem("username")) {
-        navigate("/");
+        // navigate("/");
       }
     };
     checkUser();
@@ -14,11 +15,13 @@ const Dashboard = () => {
 
   const handleSignOut = () => {
     localStorage.removeItem("username");
-    navigate("/");
+    navigate("/register");
   };
   return (
     <div className="dashboard">
-      <h2 style={{ marginBottom: "30px" }}>Hillary, Kipngetich</h2>
+      <h2 style={{ marginBottom: "30px" }}>
+        Hillary, Kipngetich, {localStorage.getItem("username")}
+      </h2>
       <button className="signOutBtn" onClick={handleSignOut}>
         SIGN OUT
       </button>
