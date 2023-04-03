@@ -7,7 +7,7 @@
 }
 input {
   height: 45px;
-/* width: 100px; */
+  /* width: 100px; */
   padding: 10px 15px;
   margin-bottom: 15px;
 }
@@ -66,6 +66,13 @@ button:hover {
 }
 .verify__form {
   align-items: center;
+}
+
+.PhoneInput {
+  width: 350px;
+  padding-left: 30px;
+  padding-top: 40px;
+  border-radius: 10px;
 }
 /* h2 {
   color: aquamarine;
