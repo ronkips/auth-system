@@ -5,9 +5,11 @@ import Dashboard from "./components/Dashboard";
 import PhoneVerify from "./components/PhoneVerify";
 import Header from "./components/Header";
 import Country from "./components/Country";
+import Navbar from "./components/Navbar";
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Signup />} />
